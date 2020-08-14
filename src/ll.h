@@ -1,13 +1,15 @@
 #ifndef ll_h
 #define ll_h
+
 #include <stdlib.h>
 #include <stdbool.h>
+#include <list>
 
 typedef struct ll_node ll_node;
 struct ll_node {
-	void *data;
-	ll_node *prev;
-	ll_node *next;
+    void *data;
+    ll_node *prev;
+    ll_node *next;
 };
 
 #define DATA(n_n_n) ((n_n_n)->data)
@@ -35,7 +37,6 @@ void ll_destroy(ll_node *n);
 void ll_mapdestroy(ll_node *n, void (func) (void*));
 void ll_mapdestroy_r(ll_node *n, void (func) (void*, void*), void *state);
 
-#ifdef LL_CIRCULAR
 bool ll_is_circular(const ll_node *n);
 size_t ll_clength(const ll_node *n);
 ll_node *ll_cfind(ll_node *n, bool (*predicate)(void *));
@@ -44,6 +45,5 @@ ll_node *ll_cfind_r(ll_node *n, bool (*predicate)(void *, void *), void *extra);
 ll_node *ll_crfind_r(ll_node *n, bool (*predicate)(void *, void *), void *extra);
 void ll_cmap(ll_node *n, void *(*func) (void*));
 void ll_cmap_r(ll_node *n, void *(*func) (void*, void*), void *extra);
-#endif
 
 #endif
